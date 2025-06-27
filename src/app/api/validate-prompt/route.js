@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest) {
+export async function POST(req) {
   try {
     const { activationCode } = await req.json();
     
@@ -27,8 +27,8 @@ Always ask for: email type, target audience, and main goal before writing.`,
       }
     };
 
-    if (validCodes[activationCode as keyof typeof validCodes]) {
-      const promptData = validCodes[activationCode as keyof typeof validCodes];
+    if (validCodes[activationCode]) {
+      const promptData = validCodes[activationCode];
       return NextResponse.json({ 
         valid: true, 
         prompt: {
